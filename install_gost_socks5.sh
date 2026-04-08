@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-SCRIPT_VERSION="1.0.0"
+SCRIPT_VERSION="1.0.1"
 GOST_VERSION="${GOST_VERSION:-3.2.6}"
 INSTALL_DIR="/usr/local/bin"
 SERVICE_NAME="gost"
@@ -44,7 +44,15 @@ get_value() {
   else
     printf '%s' "$prompt: " >&2
   fi
-  IFS= read -r input_value
+
+  input_value=""
+  if [ -r /dev/tty ]; then
+    IFS= read -r input_value < /dev/tty || true
+  elif [ -t 0 ]; then
+    IFS= read -r input_value || true
+  else
+    err "Interactive input is unavailable. Either run the script as a file, or pass SOCKS_USER, SOCKS_PASS, and SOCKS_PORT as environment variables."
+  fi
 
   if [ -z "$input_value" ]; then
     input_value="$default_value"
@@ -203,7 +211,7 @@ build_listen_url() {
 create_env_file_systemd() {
   mkdir -p /etc/gost
   cat > /etc/gost/gost.env <<EOFENV
-GOST_LISTEN_URL='${LISTEN_URL}'
+GOST_LISTEN_URL=${LISTEN_URL}
 EOFENV
 }
 
