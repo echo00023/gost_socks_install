@@ -89,13 +89,13 @@ bash install_gost_socks5.sh
 如果你把脚本传到 GitHub，可以直接这样执行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/你的用户名/你的仓库/main/install_gost_socks5.sh | sh
+curl -fsSL https://raw.githubusercontent.com/echo00023/gost_socks_install/refs/heads/main/install_gost_socks5.sh | sh
 ```
 
 或者：
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/你的用户名/你的仓库/main/install_gost_socks5.sh | sh
+wget -qO- https://raw.githubusercontent.com/echo00023/gost_socks_install/refs/heads/main/install_gost_socks5.sh | sh
 ```
 
 > 注意：远程执行前请先确认脚本内容可信。
@@ -463,7 +463,7 @@ SOCKS_USER=global SOCKS_PASS='MyPass@2026' SOCKS_PORT=22026 bash install_gost_so
 GitHub 远程执行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/你的用户名/你的仓库/main/install_gost_socks5.sh | \
+curl -fsSL https://raw.githubusercontent.com/echo00023/gost_socks_install/refs/heads/main/install_gost_socks5.sh | \
 SOCKS_USER=global SOCKS_PASS='MyPass@2026' SOCKS_PORT=22026 sh
 ```
 
